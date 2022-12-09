@@ -63,12 +63,12 @@ def predict():
     For rendering results on HTML GUI
     '''
     if request.method == 'POST':
-        tenure = [float(request.form['tenure'])]
-        warehouse = [float(request.form['warehousetohome'])]
-        numdevice = [float(request.form['numdevices'])]
-        numaddress = [float(request.form['numaddress'])]
-        lastorder = [float(request.form['lastorder'])]
-        cashback = [float(request.form['cashbackamount'])]
+        tenure = float(request.form['tenure'])
+        warehouse = float(request.form['warehousetohome'])
+        numdevice = float(request.form['numdevices'])
+        numaddress = float(request.form['numaddress'])
+        lastorder = float(request.form['lastorder'])
+        cashback = float(request.form['cashbackamount'])
         logindevice = request.form['logindevice']
         citytier = request.form['citytier']
         paymentmode = request.form['paymentmode']
