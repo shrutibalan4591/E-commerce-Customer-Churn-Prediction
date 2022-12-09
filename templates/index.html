@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Churn Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+<style>
+    
+body  {
+  margin-top : 0px;
+  background-color : black;
+  color : #ff9933;
+  width : 100%;
+  transform : scale(90%);
+  font-family : arial, helvatica, sans-serif;
+}
+
+.row{
+	margin-top : 0px;
+	padding : 0px;
+	margin-bottom : 20px;
+}
+
+.result {
+    margin: auto;
+    width: 75%;
+}
+
+.column {
+	float : left;
+	width : 50%;
+}
+
+.button{
+	text-align : center;
+}
+
+.button-submit {
+	background-color:#ff9933;
+	padding : 15px 3px;
+	margin-top : 20px;
+	border : none;
+	color : black;
+}
+
+.button-submit:hover {
+	background-color : #008cba;
+	color : white;
+}
+
+.button-submit:active {
+	background-color : #4caf55;
+	color : white;
+}
+
+</style>
+
+
+<body>
+ <div class="row">
+	<h1 style="margin: auto; width: 35%; padding: 0.1%; text-align: center;">Customer Churn Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+		<div class="column">
+		<fieldset style="float:center; height:500px; margin-right:10px;">
+			<legend><b></b></legend>
+			<p><b>Tenure :</b><br>
+			<input type="number" name="tenure" placeholder="tenure with the organization" required="required" /></p>
+			
+			
+			<p><b>City Tier:</b><br>
+			<select name="citytier" id="citytier" required>
+				<option value="1">Tier 1</option>
+				<option value="2">Tier 2</option>
+				<option value="3">Tier 3</option>
+			</select></p>
+				
+			
+			<p><b>Distance to the warehouse from the residence :</b><br>
+			<input type="number" name="warehousetohome" placeholder="distance in km" required="required" /></p>
+			
+			
+			<b>Gender of the customer :</b><br>
+			<div style="float:left; margin-right: 1.5em;">
+			<input type="radio" id="male" name="gender" value="Male" required="required"/>
+			<label for="male">Male</label>
+			</div>
+			<div style="float:left; margin-right: 1.5em;">
+			<input type="radio" id="female" name="gender" value="Female" required="required"/>
+			<label for="female">Female</label>
+			</div>
+			<br>
+									
+			
+			<p><b>Marital Status :</b><br>
+			<select name="maritalstatus" id="maritalstatus" required>
+				<option value="Single">Single</option>
+				<option value="Married">Married</option>
+				<option value="Divorced">Divorced</option>
+			</select></p>
+			
+			
+			<b>Any complaints in the last month> :</b><br>
+			<div style="float:left; margin-right: 1.5em;">
+			<input type="radio" id="yes" name="complain" value="1" required="required"/>
+			<label for="Yes">Yes</label>
+			</div>
+			<div style="float:left; margin-right: 1.5em;">
+			<input type="radio" id="no" name="complain" value="0" required="required"/>
+			<label for="No">No</label>
+			</div>
+			<br>
+			
+			
+			<p><b>Number of coupons used in the last month :</b><br>
+			<input type="number" name="couponused" placeholder=" " required="required" /></p>
+
+			
+			<p><b>Number of orders made in the last month :</b><br>
+			<input type="number" name="ordercount" placeholder=" " required="required" /></p>
+			
+			<p><b>Cashback Amount :</b><br>
+			<input type="number" name="cashbackamount" placeholder=" " required="required" /></p>
+			
+		</fieldset>
+		</div>
+		
+		<div class="column">
+		<fieldset style="height:500px; margin-right:10px;">
+				<legend><b></b></legend>
+				<p><b>Number of days since last order placedv :</b><br>
+				<input type="number" name="lastorder" placeholder="" required="required" /></p>
+				
+				
+				<p><b>Preferred login device:</b><br>
+				<select name="logindevice" id="logindevice" required>
+					<option value="Mobile">Mobile Phone</option>
+					<option value="Computer">Computer</option>
+				</select></p>
+				
+				
+				<p><b>Number of devices registered with the app :</b><br>
+				<input type="number" name="numdevices" placeholder="" required="required" /></p>
+			
+	
+				<p><b>Preferred Payment Mode: </b><br>
+				<select name="paymentmode" id="paymentmode" required>
+					<option value="DC">Debit Card</option>
+					<option value="CC">Credit Card</option>
+					<option value="UPI">UPI</option>
+					<option value="COD">Cash On Delivery</option>
+					<option value="E wallet">E-wallet</option>
+				</select></p>
+				
+				
+				<p><b>Preferred Order Category: </b><br>
+				<select name="ordercat" id="ordercat" required>
+					<option value="Laptop">Laptop</option>
+					<option value="Mobile">Mobile</option>
+					<option value="Fashion">Fashion</option>
+					<option value="Grocery">Grocery</option>
+					<option value="Others">Others</option>
+				</select></p>
+
+				
+				<p><b>Approx. number of hours customer spends on app :</b><br>
+				<input type="number" name="hourspend" placeholder="" required="required" /></p>
+				
+				
+				<p><b>Satisfaction score : </b><br>
+				<select name="satisfactionscore" id="satisfactionscore" required>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select></p>
+
+
+				<p><b>Number of addresses registered with the app :</b><br>
+				<input type="number" name="numaddress" placeholder="" required="required" /></p>
+				
+				
+				<p><b>Percentage increases in order from last year :</b><br>
+				<input type="number" name="orderhike" placeholder="" required="required" /></p>
+
+		</fieldset>
+		</div>
+		
+		
+		
+		<div class="button" >
+			<button type="submit" class="button-submit" style="cursor:pointer;" hover="background-color:blue;"><b>Predict Risk</b></button>
+		</div>
+    </form>
+	<br>
+	<div class="result" align="center">
+		<div class="result" align="center">
+		{% if prediction==1 %}
+			<h2><p style="padding: 0.3%; color:red;"><b>CUSTOMER WILL CHURN OUT!</b></p></h2>
+		{% elif prediction==0 %}
+			<h2><p style="padding: 0.3%; color:green;"><b>CUSTOMER WILL NOT CHURN OUT!</b></p></h2>
+		{% endif %}	
+	</div>	
+	</div>
+ </div>
+
+
+</body>
+</html>
