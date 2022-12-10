@@ -1,0 +1,10 @@
+2022-12-10 07:19:38,057 - root - INFO - FILE STARTS RUNNING!
+2022-12-10 07:19:38,841 - numexpr.utils - INFO - NumExpr defaulting to 2 threads.
+2022-12-10 07:19:39,038 - matplotlib.pyplot - DEBUG - Loaded backend module://ipykernel.pylab.backend_inline version unknown.
+2022-12-10 07:19:39,960 - root - INFO - Libraries imported!
+2022-12-10 07:19:40,038 - root - INFO - Database connected!
+2022-12-10 07:19:44,455 - root - INFO - Data loaded from database!
+2022-12-10 07:19:47,128 - root - INFO - Feature engineering starts!
+2022-12-10 07:20:02,896 - root - INFO - Feature Engineering ends!
+2022-12-10 07:20:13,198 - root - INFO - Modified data saved in database!
+2022-12-10 07:20:13,205 - root - INFO - FILE ENDS RUNNING!

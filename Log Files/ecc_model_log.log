@@ -1,0 +1,11 @@
+2022-12-10 07:24:13,308 - root - INFO - FILE STARTS RUNNING!
+2022-12-10 07:24:22,874 - numexpr.utils - INFO - NumExpr defaulting to 2 threads.
+2022-12-10 07:24:23,399 - matplotlib.pyplot - DEBUG - Loaded backend module://ipykernel.pylab.backend_inline version unknown.
+2022-12-10 07:24:45,946 - matplotlib.pyplot - DEBUG - Loaded backend module://ipykernel.pylab.backend_inline version unknown.
+2022-12-10 07:24:51,330 - root - INFO - Libraries imported!
+2022-12-10 07:25:18,379 - root - INFO - Connected to database!
+2022-12-10 07:25:43,626 - root - INFO - Data loaded from database!
+2022-12-10 07:25:51,140 - root - INFO - Modeling starts!
+2022-12-10 07:26:23,044 - root - INFO - Modeling ends!
+2022-12-10 07:26:30,654 - root - INFO - Saved the model!
+2022-12-10 07:26:30,660 - root - INFO - FILE ENDS RUNNING!
